@@ -83,17 +83,17 @@ window.onload = () => {
 
         // ? 버튼 클릭시 발생하는 이벤트 - ui 내용 변경
         document.getElementsByClassName("help1")[0].addEventListener("click", () => {
-            document.getElementById("help-image").setAttribute("src", "../img/grid1.png");
+            document.getElementById("help-image").setAttribute("src", "./img/grid1.PNG");
             document.getElementById("help-image-explain").innerText = "지폐 수와 총액을 기입합니다. ";
         });
 
         document.getElementsByClassName("help2")[0].addEventListener("click", () => {
-            document.getElementById("help-image").setAttribute("src", "../img/grid2.png");
+            document.getElementById("help-image").setAttribute("src", "./img/grid2.PNG");
             document.getElementById("help-image-explain").innerText = "각 인원 별 수령받는 금액을 입력합니다. 버튼을 통해 인원을 추가 및 삭제 가능합니다.";
         });
 
         document.getElementsByClassName("help3")[0].addEventListener("click", () => {
-            document.getElementById("help-image").setAttribute("src", "../img/grid3.png");
+            document.getElementById("help-image").setAttribute("src", "./img/grid3.PNG");
             document.getElementById("help-image-explain").innerText = "인원 별로 수령할 지폐 수가 반환됩니다. 천원 이하는 과에서 알아서 처리합니다. ";
         });
     })()
