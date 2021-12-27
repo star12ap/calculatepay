@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="./css/test.css">
+        <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+        <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+        <script type="module" src="./js/grid.js" ></script>
+        <script type="module" src="./js/calculator.js"></script>
+        <script type="module" src="./js/test.js"></script>
+        
+    </head>
+    <body>
+        <div>
+            <div class='block-ui hidden' id="block-ui">
+                <div >
+                    <div class="block-content">
+                        <!-- 내용 -->
+                        <div><img id="help-image"/></div>
+                        <div id="help-image-explain"></div>
+                        <div id="block-btn" class="block-btn">종료</div>
+                    </div>
+                   
+                </div>
+                
+            </div>
+            <div>
+                <div class="total-info">
+                    <div class="head-writing">지폐 수 및 총액 <span class='help-user-btn help1'>?</span></div>
+                    <div id="grid1"></div>
+                </div>
+                <div class="people-info">
+                    <div><div class="head-writing">각 인원 별 금액 <span class='help-user-btn help2'>?</span></div><span class='row-button'><div class="rowctrl-btn" id="row-add">추가</div><div class="rowctrl-btn" id="row-remove">삭제</div></span></div>
+                    <div id="grid2"></div>
+                    <div class="calculate"><div class="calculate-btn" id="calculate-btn">계산</div></div>
+                </div>
+                <div class="people-info hidden">
+                    <div><div class="head-writing">각 인원 별 금액 <span class='help-user-btn help3'>?</span></div></div>
+                    <div id="grid3"></div>
+                    <div class="calculate"><div class="calculate-btn" id="calculate-again-btn">다시</div></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
