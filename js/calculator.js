@@ -63,7 +63,7 @@ Calculator.prototype.balanceMoneyNumber = function(result, unit) {
 
     while (!breakpoint && this.people > 1)
         for (let i = this.people-2; i >= 0; i--)
-            if (result[i][unit] + unitCount <= result[this.people-1][unit] - unitCount) {
+            if (result[i][unit] + unitCount <= result[this.people-1][unit] - unitCount && result[i][unit-1] >= 1) {
                 result[i][unit-1] -= 1;
                 result[i][unit] += unitCount;
                 result[this.people-1][unit-1] += 1;
