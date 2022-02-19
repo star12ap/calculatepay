@@ -210,7 +210,7 @@ const loadGrid3 = (id, gridData) => {
 }
 
 const calcMoneyNum = (grid) => {
-    let data = grid.getData()[0];
+    let data = grid.getData()[(grid.RowAppend ? 1 : 0)];
 
     let colArr = ['Money50000',"Money10000","Money1000","MoneyRest"]
     let res = new Array(colArr.length);
@@ -222,17 +222,8 @@ const calcMoneyNum = (grid) => {
     return res;
 }
 
-const produceMoneyArray = (grid) => {
-    let data = grid.getData();
-    let res = new Array();
-    for (let i =0 ; i < data.length; i++) {
-        res.push(parseInt(data[i]["Money"]));
-    }
-    return res;
-}
-
 const checkTotalEq = (grid, data) => {
-    let total = parseInt(grid.getData()[0]["Total"]);
+    let total = parseInt(grid.getData()[(grid.RowAppend ? 1 : 0)]["Total"]);
     let sum = 0;
     for (let i =0 ; i < data.length; i++) {
         sum += data[i];
@@ -242,19 +233,49 @@ const checkTotalEq = (grid, data) => {
     return false;
 }
 
-const produceDataArray = (data) => {
-    let res = new Array(data.length);
-    for (let i = 0; i < res.length; i++) {
-        res[i] ={
-            "Money50000":data[i][0],
-            "Money10000":data[i][1],
-            "Money1000":data[i][2],
-            "MoneyRest":data[i][3],
-            "Total":50000* data[i][0] + 10000 * data[i][1] + 1000* data[i][2] + data[i][3]
-        };
-    }
-    return res;
+
+
+const appendTargetRow = (grid, arr) => {
+    grid.appendRow({
+      "Money50000":arr[0],
+      "Money10000":arr[1],
+      "Money1000":arr[2],
+      "MoneyRest":arr[3],
+      "Total":50000* arr[0] + 10000 * arr[1] + 1000* arr[2] + arr[3],
+      _attributes: {
+        className: {
+          // Add class name on a row
+          row: ['lack-white-blue']
+        }
+      }
+    });
+    grid.RowAppend = true;
 }
 
-export { loadGrid1, loadGrid2, loadGrid3, calcMoneyNum, produceMoneyArray, checkTotalEq, produceDataArray};
+// Grid 1
+const produceMoneyArray = (grid) => {
+  let data = grid.getData();
+  let res = new Array();
+  for (let i =0 ; i < data.length; i++) {
+      res.push(parseInt(data[i]["Money"]));
+  }
+  return res;
+}
+
+// Grid 3
+const produceDataArray = (data) => {
+  let res = new Array(data.length);
+  for (let i = 0; i < res.length; i++) {
+      res[i] ={
+          "Money50000":data[i][0],
+          "Money10000":data[i][1],
+          "Money1000":data[i][2],
+          "MoneyRest":data[i][3],
+          "Total":50000* data[i][0] + 10000 * data[i][1] + 1000* data[i][2] + data[i][3]
+      };
+  }
+  return res;
+}
+
+export { loadGrid1, loadGrid2, loadGrid3, calcMoneyNum, produceMoneyArray, checkTotalEq, produceDataArray, appendTargetRow};
 

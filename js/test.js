@@ -1,4 +1,4 @@
-import { loadGrid1, loadGrid2, loadGrid3, calcMoneyNum , produceMoneyArray, checkTotalEq ,produceDataArray } from "./grid.js";
+import { loadGrid1, loadGrid2, loadGrid3, calcMoneyNum , produceMoneyArray, checkTotalEq ,produceDataArray,appendTargetRow } from "./grid.js";
 import { Calculator } from "./calculator.js";
   
 // onload 시 그리드 및 이벤트 생성
@@ -42,7 +42,12 @@ window.onload = () => {
             }
 
             let calc = new Calculator(Grids[1].getRowCount(), moneyNum,eachMoney);
-
+            let lack = calc.checkLack();
+            
+            if (Array.isArray(lack)) {
+                appendTargetRow(Grids[0], lack);
+            }
+            
             calc.cutSmall();
             let res = calc.divideMoneyGreedy();
             let res2 = calc.balanceMoneyNumber(res, 2);
@@ -66,6 +71,10 @@ window.onload = () => {
             Grids[1].destroy();
             Grids.pop();
             Grids[1] = loadGrid2('grid2');
+            if (Grids[0].RowAppend) {
+                Grids[0].removeRow(Grids[0].getRowCount()-1);
+                delete Grids[0].RowAppend;
+            }
         });
 
         // ? 클릭시 발생하는 이벤트 - ui 보여줌

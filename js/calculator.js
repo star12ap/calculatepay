@@ -19,6 +19,50 @@ function Calculator (people, moneyNum, eachMoney) {
     }
 };
 
+// 지폐 부족 현상 반영 
+Calculator.prototype.checkLack = function() {
+    var boolCheck = false;
+    // 1000
+    let count1000 = 0;
+    this.eachMoney.forEach(element => {
+        count1000 += parseInt((parseInt(element) / 1000)) % 10;
+    });
+
+    // 천원짜리 부족 현상
+    if (count1000 > this.moneyNum[2]) {
+        this.moneyNum[1] -= (count1000 - this.moneyNum[2]) / 10;
+        this.moneyNum[2] += count1000 - this.moneyNum[2];
+        boolCheck = true;
+    }
+
+    // 10000
+
+    let count10000 = 0;
+    this.eachMoney.forEach(element => {
+        count10000 += parseInt((parseInt(element) / 10000)) % 5;
+    });
+
+    // 10000원짜리 부족현상
+    if (count10000 > this.moneyNum[1]) {
+        this.moneyNum[0] -= (count10000 - this.moneyNum[1]) / 5;
+        this.moneyNum[1] += count10000 - this.moneyNum[1];
+
+        boolCheck = true;
+    }
+
+    if (boolCheck) {
+        // 변경된 개수로 초기화
+        this.orgMoneyNum = this.moneyNum.map((element,idx) => {
+            return element;
+        }); 
+    }
+
+    if (boolCheck) {
+        return this.moneyNum.slice();
+    }
+    return boolCheck;
+}
+
 
 Calculator.prototype.cutSmall = function() {
     let remainder = 0;

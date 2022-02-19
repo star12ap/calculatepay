@@ -139,3 +139,7 @@
     padding-left: 10pt;
     font-size: 15pt;
 }
+
+.lack-white-blue {
+    background-color: rgb(159, 230, 243) !important;
+}
